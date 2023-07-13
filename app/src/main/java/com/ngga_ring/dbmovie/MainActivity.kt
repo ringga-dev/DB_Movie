@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                     "",
                     binding.serach.text.toString()
                 )
+                binding.serach.setText("")
                 true
             } else {
                 false
@@ -141,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                 Resource.Status.ERROR -> {
                     Toast.makeText(
                         this,
-                        it.status.toString() + it.message.toString(),
+                        it.status.toString(),
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -150,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     Toast.makeText(
                         this,
-                        it.status.toString() + it.message.toString(),
+                        it.status.toString() ,
                         Toast.LENGTH_SHORT
                     )
                         .show()
