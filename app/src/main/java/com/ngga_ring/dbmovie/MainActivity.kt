@@ -139,12 +139,20 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 Resource.Status.ERROR -> {
-                    Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this,
+                        it.status.toString() + it.message.toString(),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
 
                 else -> {
-                    Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        this,
+                        it.status.toString() + it.message.toString(),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }
@@ -164,7 +172,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecler() {
         binding.rvNews.apply {
-
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             scrollToPosition(0)
             adapter = NewsAdapter(mutableListOf(), this@MainActivity)
