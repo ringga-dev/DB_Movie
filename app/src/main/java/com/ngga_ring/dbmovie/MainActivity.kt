@@ -164,10 +164,7 @@ class MainActivity : AppCompatActivity() {
 
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             adapter = NewsAdapter(mutableListOf(), this@MainActivity)
-
+            scrollToPosition(0)
         }
-        val layoutManager = binding.rvNews.layoutManager as LinearLayoutManager
-        layoutManager.scrollToPosition(0)
-
     }
 }
