@@ -157,14 +157,17 @@ class MainActivity : AppCompatActivity() {
                 adapter.setNews(data!!)
             }
         }
+        binding.rvNews.apply {
+            scrollToPosition(0)
+        }
     }
 
     private fun setupRecler() {
         binding.rvNews.apply {
 
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
-            adapter = NewsAdapter(mutableListOf(), this@MainActivity)
             scrollToPosition(0)
+            adapter = NewsAdapter(mutableListOf(), this@MainActivity)
         }
     }
 }
