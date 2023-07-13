@@ -19,11 +19,11 @@ class NewsRepository @Inject constructor(
     ): Resource<BaseModels<List<Articles>>> {
         return try {
             val response =
-                if (page != null && pageSize != null && q == "") apiService.getNews(
+                if (page != null && pageSize != null) apiService.getNewsPage(
+                    pageSize,
+                    page,
                     category,
                     apiKey,
-                    pageSize,
-                    page
                 ) else if (category == "" && q.toString() != "") apiService.getNewsSearc(
                     q.toString(),
                     apiKey

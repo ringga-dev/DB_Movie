@@ -31,21 +31,28 @@ class MainActivity : AppCompatActivity() {
         setupRecler()
 
         binding.business.setOnClickListener {
+            categori = "business"
             getData(1, "business", "")
+
         }
         binding.entertainment.setOnClickListener {
+            categori = "entertainment"
             getData(1, "entertainment", "")
         }
         binding.general.setOnClickListener {
+            categori = "general"
             getData(1, "general", "")
         }
         binding.health.setOnClickListener {
+            categori = "health"
             getData(1, "health", "")
         }
         binding.sports.setOnClickListener {
+            categori = "sports"
             getData(1, "sports", "")
         }
         binding.technology.setOnClickListener {
+            categori = "technology"
             getData(1, "technology", "")
         }
         binding.serach.setOnEditorActionListener { _, actionId, event ->
@@ -87,8 +94,9 @@ class MainActivity : AppCompatActivity() {
         initScrollListener()
     }
 
+    private var categori = "business"
 
-    private var posScrole = 0
+    private var posScrole = 1
     private fun initScrollListener() {
         binding.rvNews.layoutManager = LinearLayoutManager(this)
 
@@ -104,7 +112,8 @@ class MainActivity : AppCompatActivity() {
                 if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == data!!.size - 1) {
                     //bottom of list!
                     if (data!!.size >= 19) {
-                        getData(posScrole, "business","")
+                        posScrole++
+                        getData(posScrole, categori, "")
                     }
                 }
 
@@ -117,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getNews(
             s,
             key,
-            if (posScrole == 1) null else "100",
+            if (posScrole == 1) null else "20",
             if (posScrole == 1) null else posScrole.toString(),
             q
         ).observe(this) {
@@ -152,8 +161,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecler() {
         binding.rvNews.apply {
+
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             adapter = NewsAdapter(mutableListOf(), this@MainActivity)
+
         }
+        val layoutManager = binding.rvNews.layoutManager as LinearLayoutManager
+        layoutManager.scrollToPosition(0)
+
     }
 }
